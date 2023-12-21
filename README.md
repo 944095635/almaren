@@ -1,9 +1,9 @@
 # almaren
 almaren im
 
-<img src="https://raw.githubusercontent.com/944095635/almaren/master/HOME.png" >
-
 <img src="https://raw.githubusercontent.com/944095635/almaren/master/cover.png" >
+
+<img src="https://raw.githubusercontent.com/944095635/almaren/master/HOME.png" width='360'>
 
 <br></br>
 #### 说明:
