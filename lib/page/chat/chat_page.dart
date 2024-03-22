@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:almaren/model/chat.dart';
 import 'package:almaren/model/msg.dart';
 import 'package:almaren/page/chat/chat_controller.dart';
@@ -7,7 +5,6 @@ import 'package:almaren/page/wallpaper_page.dart';
 import 'package:almaren/styles/colors.dart';
 import 'package:almaren/widget/common_widget.dart';
 import 'package:almaren/widget/text_field.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -189,7 +186,8 @@ class ChatPage extends GetView<ChatController> {
                       height: 128.h,
                       child: GridView(
                         scrollDirection: Axis.horizontal,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 1,
                         ),

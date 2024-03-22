@@ -2,7 +2,6 @@ import 'package:almaren/model/contacts.dart';
 import 'package:almaren/page/contacts/contacts_controller.dart';
 import 'package:almaren/styles/colors.dart';
 import 'package:almaren/widget/common_widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

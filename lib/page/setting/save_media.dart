@@ -1,7 +1,6 @@
 import 'package:almaren/page/chats/chats_controller.dart';
 import 'package:almaren/page/wallpaper_page.dart';
 import 'package:almaren/widget/common_widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
