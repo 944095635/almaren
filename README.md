@@ -4,6 +4,10 @@ Flutter 聊天界面 IM
 
 almaren im
 
+开源地址：GitHub - 944095635/almaren: Flutter 聊天界面 Chat UI almaren im
+
+设计图作者：Almaren社交APP设计-MasterGo 社区 https://link.zhihu.com/?target=https%3A//mastergo.com/community/resource/10124
+
 <img src="https://raw.githubusercontent.com/944095635/almaren/master/cover.png" >
 
 <img src="https://raw.githubusercontent.com/944095635/almaren/master/HOME.png" width='360'>
