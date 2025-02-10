@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:almaren/mixin/app_title_mixin.dart';
 import 'package:almaren/models/chat.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,8 @@ import 'package:get/get.dart';
 
 //正在聊天 - 控制器
 class ChatsController extends GetxController
-    with StateMixin, GetSingleTickerProviderStateMixin {
+    with StateMixin, GetSingleTickerProviderStateMixin, AppTitleMixin {
   late EasyRefreshController refreshController;
-  late ScrollController scrollController;
 
   //菜单控制器
   late AnimationController menuController;
@@ -27,7 +27,6 @@ class ChatsController extends GetxController
   // final EventBus _eventBus = Imclient.IMEventBus;
 
   var data = RxList<Chat>.empty(growable: true);
-  var titleOpacity = 0.0.obs;
 
   var online = true.obs;
 
@@ -35,19 +34,6 @@ class ChatsController extends GetxController
   void onInit() {
     super.onInit();
     refreshController = EasyRefreshController();
-    scrollController = ScrollController()
-      ..addListener(() {
-        //debugPrint(scrollController.offset.toString());
-        if (scrollController.offset >= 50) {
-          titleOpacity.value = 1;
-        } else {
-          if (titleOpacity.value != 0) {
-            titleOpacity.value = scrollController.offset / 50;
-          } else {
-            titleOpacity.value = 0;
-          }
-        }
-      });
 
     menuController = AnimationController(
       vsync: this,
@@ -357,5 +343,4 @@ class ChatsController extends GetxController
       },
     );
   }
-
-  }
+}

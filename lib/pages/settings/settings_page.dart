@@ -35,31 +35,50 @@ class SettingsPage extends GetView<SettingsLogic> {
         ],
       ),
       extendBodyBehindAppBar: true,
-      body: ListView(
+      body: CustomScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         controller: controller.scrollController,
-        children: [
-          BodyTitle(
-            "Settings",
+        slivers: [
+          SliverToBoxAdapter(
+            child: SafeArea(
+              bottom: false,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  BodyTitle(
+                    "Settings",
+                  ),
+                  20.verticalSpace,
+                  MenuItem(
+                    title: "Saved media",
+                    onTap: () {},
+                  ),
+                  MenuItem(
+                    title: "Notifications",
+                    onTap: () {},
+                  ),
+                  MenuItem(
+                    title: "Privacy and security",
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
           ),
-          20.verticalSpace,
-          MenuItem(
-            title: "Saved media",
-            onTap: () {},
-          ),
-          MenuItem(
-            title: "Notifications",
-            onTap: () {},
-          ),
-          MenuItem(
-            title: "Privacy and security",
-            onTap: () {},
-          ),
-          Padding(
-            padding: Sizes.buttonPadding,
-            child: ElevatedButton(
-              onPressed: controller.logout,
-              child: Text("logout"),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: SafeArea(
+              top: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: Sizes.buttonPadding,
+                  child: ElevatedButton(
+                    onPressed: controller.logout,
+                    child: Text("logout"),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

@@ -16,7 +16,7 @@ class Sizes {
   static const contentHorizontalPadding = EdgeInsets.symmetric(horizontal: 24);
 
   /// 页面按钮的边距 - 值
-  static const buttonPaddingValue = 20;
+  static const double buttonPaddingValue = 20.0;
 
   /// 页面按钮的边距 - 四边距
   static const buttonPadding = EdgeInsets.all(20);
