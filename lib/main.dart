@@ -64,6 +64,10 @@ class MyApp extends StatelessWidget {
           labelMedium: TextStyle(),
           labelSmall: TextStyle(),
         ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          elevation: 0,
+          color: Colors.transparent,
+        ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           elevation: 0,
           backgroundColor: Colors.transparent,

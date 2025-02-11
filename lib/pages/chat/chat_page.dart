@@ -1,9 +1,10 @@
+import 'dart:io';
 import 'package:almaren/pages/chat/chat_logic.dart';
-import 'package:almaren/pages/chats/chats_item.dart';
 import 'package:almaren/values/colors.dart';
 import 'package:almaren/values/sizes.dart';
 import 'package:almaren/widgets/appbar.dart';
 import 'package:almaren/widgets/avatar_widget.dart';
+import 'package:almaren/widgets/blur_widget.dart';
 import 'package:almaren/widgets/online_box_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled/size_extension.dart';
@@ -63,13 +64,55 @@ class ChatPage extends GetView<ChatLogic> {
         ],
       ),
       extendBodyBehindAppBar: true,
-      body: ListView.builder(
+      extendBody: true,
+      body: ListView.separated(
+        itemCount: 7,
         itemBuilder: (context, index) {
-          return ChatsItem(
-            chat: controller.chat!,
-            onTap: () {},
+          if (index <= 6) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: ClipRRect(
+                borderRadius: Sizes.borderRadius,
+                child: Image.asset(
+                  "images/img/${index + 1}.jpg",
+                  cacheWidth: 800,
+                ),
+              ),
+            );
+          }
+          return ListTile(
+            title: Text(index.toString()),
           );
         },
+        separatorBuilder: (BuildContext context, int index) {
+          return 20.verticalSpace;
+        },
+      ),
+      bottomNavigationBar: BlurWidgetEx(
+        backgroundColor: ThemeColors.glassColor,
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 10,
+              bottom: Platform.isAndroid ? 20 : 0,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white54,
+                hintText: "say something.",
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset("images/send.svg"),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
