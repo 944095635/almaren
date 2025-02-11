@@ -1,5 +1,4 @@
 import 'package:almaren/pages/settings/settings_logic.dart';
-import 'package:almaren/values/sizes.dart';
 import 'package:almaren/widgets/appbar.dart';
 import 'package:almaren/widgets/body_title.dart';
 import 'package:almaren/widgets/menu_item.dart';

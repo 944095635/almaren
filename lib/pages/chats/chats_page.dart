@@ -17,7 +17,6 @@ class ChatsPage extends GetView<ChatsController> {
     Get.put(ChatsController());
     return Scaffold(
       appBar: blurAppBar(
-        centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: SvgPicture.asset("images/search.svg"),
@@ -40,45 +39,47 @@ class ChatsPage extends GetView<ChatsController> {
         ],
       ),
       extendBodyBehindAppBar: true,
-      body: EasyRefresh(
-        controller: controller.refreshController,
-        onRefresh: () async {
-          await controller.loadData();
-          return IndicatorResult.success;
-        },
-        child: controller.obx(
-          (state) => ListView.builder(
-            controller: controller.scrollController,
-            itemCount: controller.data.length + 2,
-            itemBuilder: (BuildContext context, int index) {
-              if (index == 1) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    BodyTitle("Chats"),
-                    !controller.online.value
-                        ? Text(
-                            "offline",
-                            style: Theme.of(context).textTheme.displaySmall,
-                          )
-                        : const SizedBox(),
-                  ],
-                );
-              }
-              if (index == 0) {
-                return const HeaderLocator();
-              }
-              Chat chat = controller.data[index - 2];
+      body: controller.obx(
+        (state) => EasyRefresh(
+          header: ClassicHeader(
+            position: IndicatorPosition.locator,
+          ),
+          onRefresh: () async {
+            await controller.onRefresh();
+            return IndicatorResult.success;
+          },
+          child: _buildList(context),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildList(BuildContext context) {
+    return CustomScrollView(
+      controller: controller.scrollController,
+      physics: AlwaysScrollableScrollPhysics(),
+      slivers: [
+        SliverSafeArea(
+          bottom: false,
+          sliver: HeaderLocator.sliver(),
+        ),
+        SliverToBoxAdapter(
+          child: BodyTitle("Chats"),
+        ),
+        SliverSafeArea(
+          top: false,
+          sliver: SliverList.builder(
+            itemCount: controller.chats.length,
+            itemBuilder: (context, index) {
+              Chat chat = controller.chats[index];
               return ChatsItem(
                 chat: chat,
-                onTap: () {
-                  controller.showChat(chat);
-                },
+                onTap: () {},
               );
             },
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }

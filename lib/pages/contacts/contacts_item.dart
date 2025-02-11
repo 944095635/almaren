@@ -1,7 +1,6 @@
 import 'package:almaren/models/contacts.dart';
 import 'package:almaren/values/sizes.dart';
 import 'package:almaren/widgets/avatar_widget.dart';
-import 'package:almaren/widgets/online_box_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled/size_extension.dart';
 

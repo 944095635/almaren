@@ -9,8 +9,10 @@ class Dialogs {
     return Get.bottomSheet(
         SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
+            padding: EdgeInsets.only(
+              left: Sizes.buttonPaddingValue,
+              right: Sizes.buttonPaddingValue,
+              bottom: Sizes.buttonPaddingValue,
             ),
             child: DecoratedBox(
               decoration: BoxDecoration(

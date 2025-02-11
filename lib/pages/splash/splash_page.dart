@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
         child: Text(
           "Almaren",
           style: TextStyle(
-            fontSize: 80,
+            fontSize: 65,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:almaren/models/contacts.dart';
 import 'package:almaren/pages/contacts/contacts_item.dart';

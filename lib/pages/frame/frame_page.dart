@@ -16,17 +16,18 @@ class FramePage extends StatefulWidget {
 class _FramePageState extends State<FramePage> {
   int pageIndex = 0;
 
-  final List pages = [
-    const ChatsPage(),
-    const ContactsPage(),
-    const SettingsPage(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: pages[pageIndex],
+      body: IndexedStack(
+        index: pageIndex,
+        children: [
+          const ChatsPage(),
+          const ContactsPage(),
+          const SettingsPage(),
+        ],
+      ),
       bottomNavigationBar: BlurWidgetEx(
         backgroundColor: ThemeColors.glassColor,
         child: BottomNavigationBar(
