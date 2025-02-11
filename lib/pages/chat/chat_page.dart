@@ -1,4 +1,5 @@
 import 'package:almaren/pages/chat/chat_logic.dart';
+import 'package:almaren/pages/chats/chats_item.dart';
 import 'package:almaren/values/colors.dart';
 import 'package:almaren/values/sizes.dart';
 import 'package:almaren/widgets/appbar.dart';
@@ -18,7 +19,7 @@ class ChatPage extends GetView<ChatLogic> {
     Get.put(ChatLogic());
     return Scaffold(
       appBar: blurAppBar(
-        appHeight: 80,
+        appHeight: 70,
         titleSpacing: 0,
         title: Row(
           children: [
@@ -26,7 +27,10 @@ class ChatPage extends GetView<ChatLogic> {
               borderRadius: Sizes.borderRadiusSmall,
               child: OnlineBoxWidget(
                 online: controller.online,
-                child: AvatarWidget(avatar: controller.chat?.portrait),
+                child: AvatarWidget(
+                  size: 40,
+                  avatar: controller.chat?.portrait,
+                ),
               ),
             ),
             16.horizontalSpace,
@@ -36,12 +40,12 @@ class ChatPage extends GetView<ChatLogic> {
                 Text(
                   controller.chat?.name ?? "",
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(Get.context!).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                4.verticalSpace,
+                2.verticalSpace,
                 Text(
                   controller.online ? "Online" : "",
-                  style: Theme.of(Get.context!).textTheme.bodySmall!.copyWith(
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: controller.online
                             ? ThemeColors.greenColor
                             : ThemeColors.greyColor,
@@ -54,11 +58,19 @@ class ChatPage extends GetView<ChatLogic> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset("images/plus.svg"),
+            icon: SvgPicture.asset("images/camera.svg"),
           ),
         ],
       ),
       extendBodyBehindAppBar: true,
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return ChatsItem(
+            chat: controller.chat!,
+            onTap: () {},
+          );
+        },
+      ),
     );
   }
 }
