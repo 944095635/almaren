@@ -7,6 +7,8 @@ import 'package:flutter_styled/size_extension.dart';
 PreferredSizeWidget blurAppBar({
   Widget? title,
   Widget? leading,
+  double? appHeight,
+  double? titleSpacing,
   List<Widget>? actions,
   PreferredSize? bottom,
   bool centerTitle = true,
@@ -15,12 +17,12 @@ PreferredSizeWidget blurAppBar({
     actions.add(10.horizontalSpace);
   }
   return PreferredSize(
-    preferredSize: Size(0, kToolbarHeight),
+    preferredSize: Size.fromHeight(appHeight ?? kToolbarHeight),
     child: BlurWidgetEx(
       backgroundColor: ThemeColors.glassColor,
       child: AppBar(
         title: title,
-        titleSpacing: leading != null ? 0 : null,
+        titleSpacing: titleSpacing ?? (leading != null ? 0 : null),
         centerTitle: centerTitle,
         leading: leading,
         leadingWidth: 80,

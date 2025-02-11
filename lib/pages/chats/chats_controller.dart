@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:almaren/mixin/app_title_mixin.dart';
 import 'package:almaren/models/chat.dart';
+import 'package:almaren/pages/chat/chat_page.dart';
 import 'package:get/get.dart';
 
 //正在聊天 - 控制器
@@ -133,7 +134,7 @@ class ChatsController extends GetxController with StateMixin, AppTitleMixin {
     return _loadData();
   }
 
-  void showChat(Chat item) {
-    //Get.to(() => ChatPage(item));
+  void showChat(Chat chat) {
+    Get.to(() => ChatPage(), arguments: chat);
   }
 }

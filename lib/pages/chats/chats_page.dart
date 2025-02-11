@@ -74,7 +74,9 @@ class ChatsPage extends GetView<ChatsController> {
               Chat chat = controller.chats[index];
               return ChatsItem(
                 chat: chat,
-                onTap: () {},
+                onTap: () {
+                  controller.showChat(chat);
+                },
               );
             },
           ),
