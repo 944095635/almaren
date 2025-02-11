@@ -1,5 +1,6 @@
 import 'package:almaren/models/chat.dart';
 import 'package:almaren/styles/theme.dart';
+import 'package:almaren/values/sizes.dart';
 import 'package:almaren/widgets/avatar_widget.dart';
 import 'package:almaren/widgets/count_box_widget.dart';
 import 'package:almaren/widgets/online_box_widget.dart';
@@ -26,9 +27,12 @@ class ChatsItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Row(
           children: [
-            OnlineBoxWidget(
-              online: chat.online,
-              child: AvatarWidget(avatar: chat.portrait),
+            ClipRRect(
+              borderRadius: Sizes.borderRadiusSmall,
+              child: OnlineBoxWidget(
+                online: chat.online,
+                child: AvatarWidget(avatar: chat.portrait),
+              ),
             ),
             16.horizontalSpace,
 
@@ -40,7 +44,7 @@ class ChatsItem extends StatelessWidget {
                   Text(
                     chat.name,
                   ),
-                  5.verticalSpace,
+                  2.verticalSpace,
                   Text(
                     chat.msg ?? "",
                     maxLines: 1,
@@ -57,7 +61,7 @@ class ChatsItem extends StatelessWidget {
                 Text(
                   chat.timestamp ?? "",
                 ),
-                5.verticalSpace,
+                2.verticalSpace,
                 // 显示未读消息数量
                 if (chat.unread != 0) ...{
                   CountBoxWidget(

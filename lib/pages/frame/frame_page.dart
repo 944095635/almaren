@@ -1,4 +1,5 @@
 import 'package:almaren/pages/chats/chats_page.dart';
+import 'package:almaren/pages/contacts/contacts_page.dart';
 import 'package:almaren/pages/settings/settings_page.dart';
 import 'package:almaren/values/colors.dart';
 import 'package:almaren/widgets/blur_widget.dart';
@@ -16,9 +17,9 @@ class _FramePageState extends State<FramePage> {
   int pageIndex = 0;
 
   final List pages = [
-    ChatsPage(),
-    Text("Contacts"),
-    SettingsPage(),
+    const ChatsPage(),
+    const ContactsPage(),
+    const SettingsPage(),
   ];
 
   @override

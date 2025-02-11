@@ -9,6 +9,7 @@ PreferredSizeWidget blurAppBar({
   Widget? leading,
   List<Widget>? actions,
   PreferredSize? bottom,
+  bool? centerTitle,
 }) {
   if (actions != null) {
     actions.add(10.horizontalSpace);
@@ -20,6 +21,7 @@ PreferredSizeWidget blurAppBar({
       child: AppBar(
         title: title,
         titleSpacing: leading != null ? 0 : null,
+        centerTitle: centerTitle,
         leading: leading,
         leadingWidth: 80,
         actions: actions,

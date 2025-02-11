@@ -17,6 +17,7 @@ class ChatsPage extends GetView<ChatsController> {
     Get.put(ChatsController());
     return Scaffold(
       appBar: blurAppBar(
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: SvgPicture.asset("images/search.svg"),

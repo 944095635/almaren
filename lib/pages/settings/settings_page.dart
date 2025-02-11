@@ -29,7 +29,7 @@ class SettingsPage extends GetView<SettingsLogic> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: controller.logout,
             icon: SvgPicture.asset("images/logout.svg"),
           ),
         ],
@@ -65,22 +65,22 @@ class SettingsPage extends GetView<SettingsLogic> {
               ),
             ),
           ),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: SafeArea(
-              top: false,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: Sizes.buttonPadding,
-                  child: ElevatedButton(
-                    onPressed: controller.logout,
-                    child: Text("logout"),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // SliverFillRemaining(
+          //   hasScrollBody: false,
+          //   child: SafeArea(
+          //     top: false,
+          //     child: Align(
+          //       alignment: Alignment.bottomCenter,
+          //       child: Padding(
+          //         padding: Sizes.buttonPadding,
+          //         child: ElevatedButton(
+          //           onPressed: controller.logout,
+          //           child: Text("logout"),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

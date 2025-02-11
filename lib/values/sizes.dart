@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class Sizes {
   /// 圆角值
+  static const BorderRadius borderRadiusSmall =
+      BorderRadius.all(Radius.circular(6));
   static const BorderRadius borderRadius =
       BorderRadius.all(Radius.circular(12));
-
   /// 圆角值 - 巨大
   static const BorderRadius borderRadiusBig =
       BorderRadius.all(Radius.circular(20));
