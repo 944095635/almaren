@@ -1,4 +1,3 @@
-import 'package:almaren/values/colors.dart';
 import 'package:almaren/widgets/blur_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled/size_extension.dart';
@@ -34,10 +33,7 @@ PreferredSizeWidget blurAppBarEx({
       ),
       builder: (context, child) {
         return BlurWidgetEx(
-          backgroundColor:
-              scrollController.hasClients && scrollController.offset > 0
-                  ? ThemeColors.glassColor
-                  : Colors.white,
+          enabled: scrollController.hasClients && scrollController.offset > 0,
           child: child,
         );
       },
@@ -81,10 +77,7 @@ PreferredSizeWidget blurAppBarFade({
       ),
       builder: (context, child) {
         return BlurWidgetEx(
-          backgroundColor:
-              scrollController.hasClients && scrollController.offset > 0
-                  ? ThemeColors.glassColor
-                  : Colors.white,
+          enabled: scrollController.hasClients && scrollController.offset > 0,
           child: child,
         );
       },

@@ -95,7 +95,6 @@ class ChatPage extends GetView<ChatLogic> {
         },
       ),
       bottomNavigationBar: BlurWidgetEx(
-        backgroundColor: ThemeColors.glassColor,
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(

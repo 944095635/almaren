@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:almaren/values/colors.dart';
 import 'package:flutter/material.dart';
 
 /// 模糊组件
@@ -44,8 +45,8 @@ class BlurWidgetEx extends StatelessWidget {
     this.blurRadius = 0,
     this.hasTopBorder = false,
     this.hasBottomBorder = false,
-    required this.backgroundColor,
     this.radius = BorderRadius.zero,
+    this.enabled = true,
   });
 
   final double sigmaX;
@@ -58,11 +59,12 @@ class BlurWidgetEx extends StatelessWidget {
 
   final BorderRadius radius;
 
-  final Color backgroundColor;
-
   final bool hasTopBorder;
 
   final bool hasBottomBorder;
+
+  /// 是否启用背景模糊
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +84,7 @@ class BlurWidgetEx extends StatelessWidget {
       child: ClipRRect(
         borderRadius: radius,
         child: BackdropFilter(
+          enabled: enabled,
           filter: ImageFilter.blur(
             sigmaX: sigmaX,
             sigmaY: sigmaY,
@@ -101,7 +104,7 @@ class BlurWidgetEx extends StatelessWidget {
                       )
                     : BorderSide.none,
               ),
-              color: backgroundColor,
+              color: ThemeColors.glassColor,
             ),
             child: child,
           ),

@@ -1,7 +1,6 @@
 import 'package:almaren/pages/chats/chats_page.dart';
 import 'package:almaren/pages/contacts/contacts_page.dart';
 import 'package:almaren/pages/settings/settings_page.dart';
-import 'package:almaren/values/colors.dart';
 import 'package:almaren/widgets/blur_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +28,6 @@ class _FramePageState extends State<FramePage> {
         ],
       ),
       bottomNavigationBar: BlurWidgetEx(
-        backgroundColor: ThemeColors.glassColor,
         child: BottomNavigationBar(
           onTap: (index) {
             pageIndex = index;
