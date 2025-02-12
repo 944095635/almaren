@@ -16,21 +16,15 @@ class ChatsPage extends GetView<ChatsController> {
   Widget build(BuildContext context) {
     Get.put(ChatsController());
     return Scaffold(
-      appBar: blurAppBar(
+      appBar: blurAppBarFade(
+        context: context,
+        fadeAnimation: controller.fadeAnimation,
+        scrollController: controller.scrollController,
         leading: IconButton(
           onPressed: () {},
           icon: SvgPicture.asset("images/search.svg"),
         ),
-        title: Obx(
-          () => AnimatedOpacity(
-            opacity: controller.titleOpacity.value,
-            duration: const Duration(milliseconds: 300),
-            child: Text(
-              "Chats",
-              style: Theme.of(context).textTheme.labelLarge!,
-            ),
-          ),
-        ),
+        title: "Chats",
         actions: [
           IconButton(
             onPressed: () {},

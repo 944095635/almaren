@@ -19,9 +19,12 @@ class ChatPage extends GetView<ChatLogic> {
   Widget build(BuildContext context) {
     Get.put(ChatLogic());
     return Scaffold(
-      appBar: blurAppBar(
+      appBar: blurAppBarEx(
         appHeight: 70,
         titleSpacing: 0,
+        context: context,
+        fadeAnimation: controller.fadeAnimation,
+        scrollController: controller.scrollController,
         title: Row(
           children: [
             ClipRRect(
@@ -67,6 +70,7 @@ class ChatPage extends GetView<ChatLogic> {
       extendBody: true,
       body: ListView.separated(
         itemCount: 7,
+        controller: controller.scrollController,
         itemBuilder: (context, index) {
           if (index <= 6) {
             return Padding(

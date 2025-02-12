@@ -14,23 +14,11 @@ class ContactsPage extends GetView<ContactsLogic> {
   Widget build(BuildContext context) {
     Get.put(ContactsLogic());
     return Scaffold(
-      appBar: blurAppBar(
-        title: Obx(
-          () => AnimatedOpacity(
-            opacity: controller.titleOpacity.value,
-            duration: const Duration(milliseconds: 300),
-            child: Text(
-              "Contacts",
-              style: Theme.of(context).textTheme.labelLarge!,
-            ),
-          ),
-        ),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: SvgPicture.asset("images/plus.svg"),
-        //   ),
-        // ],
+      appBar: blurAppBarFade(
+        context: context,
+        fadeAnimation: controller.fadeAnimation,
+        scrollController: controller.scrollController,
+        title: "Contacts",
       ),
       extendBodyBehindAppBar: true,
       body: controller.obx(

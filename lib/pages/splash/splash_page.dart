@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// 启动屏幕 - 显示一个居中的Logo
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 

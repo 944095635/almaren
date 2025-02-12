@@ -1,16 +1,21 @@
-import 'package:almaren/mixin/app_title_mixin.dart';
+import 'package:almaren/mixin/appbar_mixin.dart';
 import 'package:almaren/models/contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /// 联系人逻辑层
-class ContactsLogic extends GetxController with AppTitleMixin, StateMixin {
+class ContactsLogic extends GetxController
+    with AppBarMixin, StateMixin, GetSingleTickerProviderStateMixin {
   /// 联系人列表
   List<Contacts> contacts = List.empty(growable: true);
 
   @override
   void onInit() {
     super.onInit();
+    fadeController =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(fadeController!);
+
     _loadData();
   }
 

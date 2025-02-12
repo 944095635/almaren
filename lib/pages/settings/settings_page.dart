@@ -15,17 +15,11 @@ class SettingsPage extends GetView<SettingsLogic> {
   Widget build(BuildContext context) {
     Get.put(SettingsLogic());
     return Scaffold(
-      appBar: blurAppBar(
-        title: Obx(
-          () => AnimatedOpacity(
-            opacity: controller.titleOpacity.value,
-            duration: const Duration(milliseconds: 300),
-            child: Text(
-              "Settings",
-              style: Theme.of(context).textTheme.labelLarge!,
-            ),
-          ),
-        ),
+      appBar: blurAppBarFade(
+        context: context,
+        fadeAnimation: controller.fadeAnimation,
+        scrollController: controller.scrollController,
+        title: "Settings",
         actions: [
           IconButton(
             onPressed: controller.logout,
