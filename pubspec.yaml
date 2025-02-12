@@ -39,10 +39,15 @@ dependencies:
   flutter_smart_dialog: ^4.9.8+6  #消息弹窗
   get: ^5.0.0-release-candidate-9.2.1 #GetX
   flutter_svg: ^2.0.17
-  flutter_styled:
+  flutter_styled:                #布局样式
     #path: ../flutter_styled // 本地引用方式
     git: 
        url: https://github.com/DMSkin/flutter_styled.git
+
+  flutter_switch_panel:          #切换组件
+    git: 
+       url: https://github.com/DMSkin/flutter_switch_panel.git
+       ref: main
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +75,7 @@ flutter:
   assets:
     - images/
     - images/img/
+    - images/tools/
     - images/frame/
     - images/avatar/
 

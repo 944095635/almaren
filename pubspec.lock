@@ -127,6 +127,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
+  flutter_switch_panel:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: da0c4f7faba3b869fb923a21bb5cccd38ea6f1f6
+      url: "https://github.com/DMSkin/flutter_switch_panel.git"
+    source: git
+    version: "0.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
