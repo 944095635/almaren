@@ -18,6 +18,8 @@ class ChatPage extends GetView<ChatLogic> {
   @override
   Widget build(BuildContext context) {
     Get.put(ChatLogic());
+    /// 计算图片的缓存宽度 1.5倍超采样
+    int cacheWidth = (MediaQuery.sizeOf(context).width * 1.5).toInt();
     return Scaffold(
       appBar: blurAppBarEx(
         appHeight: 70,
@@ -81,7 +83,7 @@ class ChatPage extends GetView<ChatLogic> {
                 borderRadius: Sizes.borderRadius,
                 child: Image.asset(
                   "images/img/${index + 1}.jpg",
-                  cacheWidth: 800,
+                  cacheWidth: cacheWidth,
                 ),
               ),
             );
