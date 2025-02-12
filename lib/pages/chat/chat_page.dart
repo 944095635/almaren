@@ -13,7 +13,6 @@ import 'package:flutter_styled/size_extension.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch_panel/flutter_switch_panel.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 /// 聊天页面
 class ChatPage extends GetView<ChatLogic> {
@@ -235,7 +234,7 @@ class ChatPage extends GetView<ChatLogic> {
         //'assets/emoji/emoji-1.svg'
         int id = index + 1;
         return SvgPicture.asset(
-          "images/plus.svg",
+          'images/emoji/emoji-$id.svg',
         );
       },
     );
