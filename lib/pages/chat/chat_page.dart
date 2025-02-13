@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:almaren/pages/chat/chat_logic.dart';
 import 'package:almaren/utils/keyboard_utils.dart';
 import 'package:almaren/values/colors.dart';
