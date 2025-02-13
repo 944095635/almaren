@@ -28,7 +28,7 @@ class ChatPage extends GetView<ChatLogic> {
 
     return Scaffold(
       appBar: blurAppBarEx(
-        appHeight: 70,
+        appHeight: 60,
         titleSpacing: 0,
         context: context,
         fadeAnimation: controller.fadeAnimation,
@@ -94,27 +94,36 @@ class ChatPage extends GetView<ChatLogic> {
         KeyboardUtils.hide();
         controller.switchPanelController.hide();
       },
-      child: ListView.separated(
-        itemCount: 7,
+      child: CustomScrollView(
         controller: controller.scrollController,
-        itemBuilder: (context, index) {
-          if (index <= 6) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ClipRRect(
-                borderRadius: Sizes.borderRadius,
-                child: Image.asset(
-                  "images/img/${index + 1}.jpg",
-                  cacheWidth: cacheWidth,
-                ),
+        slivers: [
+          SliverSafeArea(
+            sliver: SliverPadding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              sliver: SliverList.separated(
+                itemCount: 7,
+                itemBuilder: (context, index) {
+                  if (index <= 6) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ClipRRect(
+                        borderRadius: Sizes.borderRadius,
+                        child: Image.asset(
+                          "images/img/${index + 1}.jpg",
+                          cacheWidth: cacheWidth,
+                        ),
+                      ),
+                    );
+                  }
+                  return ListTile(title: Text(index.toString()));
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return 20.verticalSpace;
+                },
               ),
-            );
-          }
-          return ListTile(title: Text(index.toString()));
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return 20.verticalSpace;
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -142,50 +151,58 @@ class ChatPage extends GetView<ChatLogic> {
             Container(
               padding: EdgeInsets.only(
                 left: 20,
-                right: 10,
+                right: 20,
                 top: 10,
                 bottom: 10,
               ),
-              decoration: const BoxDecoration(
-                border: Border(top: BorderSide(color: Color(0xFFEEEEEE))),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      onTap: () async {
-                        controller.switchPanelController.show();
+
+              child: DefaultTextHeightBehavior(
+                textHeightBehavior: TextHeightBehavior(
+                  applyHeightToFirstAscent: false,
+                  //applyHeightToLastDescent: false,
+                  //leadingDistribution: TextLeadingDistribution.proportional,
+                ),
+                child: TextField(
+                  onChanged: (value) {
+                    controller.showSend.value = value.isNotEmpty;
+                  },
+                  onTap: () async {
+                    controller.switchPanelController.show();
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Color(0x40FEFEFE),
+                    hintText: "say something.",
+                    prefixIcon: IconButton(
+                      onPressed: () async {
+                        KeyboardUtils.hide();
+                        controller.switchPanelController.show(index: 0);
                       },
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white54,
-                        hintText: "say something.",
-                        prefixIcon: IconButton(
-                          onPressed: () async {
-                            KeyboardUtils.hide();
-                            controller.switchPanelController.show(index: 0);
-                          },
-                          icon: SvgPicture.asset("images/emoji.svg"),
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(
-                            "images/send.svg",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                      ),
+                      icon: SvgPicture.asset("images/emoji.svg"),
+                    ),
+                    suffixIcon: Obx(
+                      () =>
+                          controller.showSend.value
+                              ? IconButton(
+                                onPressed: () {},
+                                icon: SvgPicture.asset(
+                                  "images/send.svg",
+                                  width: 20,
+                                  height: 20,
+                                ),
+                              )
+                              : IconButton(
+                                onPressed: () async {
+                                  KeyboardUtils.hide();
+                                  controller.switchPanelController.show(
+                                    index: 1,
+                                  );
+                                },
+                                icon: SvgPicture.asset("images/plus.svg"),
+                              ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () async {
-                      KeyboardUtils.hide();
-                      controller.switchPanelController.show(index: 1);
-                    },
-                    icon: SvgPicture.asset("images/plus.svg"),
-                  ),
-                ],
+                ),
               ),
             ),
             _buildBottom(),

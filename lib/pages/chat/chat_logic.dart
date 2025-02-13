@@ -9,6 +9,8 @@ class ChatLogic extends GetxController
     with AppBarMixin, GetSingleTickerProviderStateMixin {
   late Chat? chat;
 
+  RxBool showSend = false.obs;
+
   bool online = false;
 
   // 底部控制器
@@ -18,8 +20,10 @@ class ChatLogic extends GetxController
   void onInit() {
     switchPanelController = FlutterSwitchPanelController();
     super.onInit();
-    fadeController =
-        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    fadeController = AnimationController(
+      duration: Duration(milliseconds: 300),
+      vsync: this,
+    );
     fadeAnimation = Tween<double>(begin: 0, end: 1).animate(fadeController!);
 
     chat = Get.arguments;
