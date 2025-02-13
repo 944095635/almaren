@@ -17,45 +17,47 @@ class _FramePageState extends State<FramePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: IndexedStack(
-        index: pageIndex,
-        children: [
-          const ChatsPage(),
-          const ContactsPage(),
-          const SettingsPage(),
-        ],
-      ),
-      bottomNavigationBar: BlurWidgetEx(
-        child: BottomNavigationBar(
-          onTap: (index) {
-            pageIndex = index;
-            setState(() {});
-          },
-          currentIndex: pageIndex,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-              activeIcon:
-                  SvgPicture.asset("images/frame/frame_chat_active.svg"),
-              icon: SvgPicture.asset("images/frame/frame_chat.svg"),
-              label: "CHAT",
-            ),
-            BottomNavigationBarItem(
-              activeIcon:
-                  SvgPicture.asset("images/frame/frame_contacts_active.svg"),
-              icon: SvgPicture.asset("images/frame/frame_contacts.svg"),
-              label: "Contacts",
-            ),
-            BottomNavigationBarItem(
-              activeIcon:
-                  SvgPicture.asset("images/frame/frame_settings_active.svg"),
-              icon: SvgPicture.asset("images/frame/frame_settings.svg"),
-              label: "SETTING",
-            )
+    return BackdropGroup(
+      child: Scaffold(
+        extendBody: true,
+        body: IndexedStack(
+          index: pageIndex,
+          children: [
+            const ChatsPage(),
+            const ContactsPage(),
+            const SettingsPage(),
           ],
+        ),
+        bottomNavigationBar: BlurWidgetEx(
+          child: BottomNavigationBar(
+            onTap: (index) {
+              pageIndex = index;
+              setState(() {});
+            },
+            currentIndex: pageIndex,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(
+                activeIcon:
+                    SvgPicture.asset("images/frame/frame_chat_active.svg"),
+                icon: SvgPicture.asset("images/frame/frame_chat.svg"),
+                label: "CHAT",
+              ),
+              BottomNavigationBarItem(
+                activeIcon:
+                    SvgPicture.asset("images/frame/frame_contacts_active.svg"),
+                icon: SvgPicture.asset("images/frame/frame_contacts.svg"),
+                label: "Contacts",
+              ),
+              BottomNavigationBarItem(
+                activeIcon:
+                    SvgPicture.asset("images/frame/frame_settings_active.svg"),
+                icon: SvgPicture.asset("images/frame/frame_settings.svg"),
+                label: "SETTING",
+              )
+            ],
+          ),
         ),
       ),
     );
