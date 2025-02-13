@@ -58,10 +58,11 @@ class ChatPage extends GetView<ChatLogic> {
                 Text(
                   controller.online ? "Online" : "",
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: controller.online
+                    color:
+                        controller.online
                             ? ThemeColors.greenColor
                             : ThemeColors.greyColor,
-                      ),
+                  ),
                 ),
               ],
             ),
@@ -99,9 +100,7 @@ class ChatPage extends GetView<ChatLogic> {
         itemBuilder: (context, index) {
           if (index <= 6) {
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ClipRRect(
                 borderRadius: Sizes.borderRadius,
                 child: Image.asset(
@@ -111,9 +110,7 @@ class ChatPage extends GetView<ChatLogic> {
               ),
             );
           }
-          return ListTile(
-            title: Text(index.toString()),
-          );
+          return ListTile(title: Text(index.toString()));
         },
         separatorBuilder: (BuildContext context, int index) {
           return 20.verticalSpace;
@@ -123,24 +120,22 @@ class ChatPage extends GetView<ChatLogic> {
   }
 
   //       bottomNavigationBar: BlurWidgetEx(
-//         child: SafeArea(
-//           child: Padding(
-//             child: TextField(
-//               decoration: InputDecoration(
+  //         child: SafeArea(
+  //           child: Padding(
+  //             child: TextField(
+  //               decoration: InputDecoration(
 
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
 
   // 输入框
   Widget _buildInputView(BuildContext context) {
     return BlurWidgetEx(
       child: Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).padding.bottom,
-        ),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -149,14 +144,10 @@ class ChatPage extends GetView<ChatLogic> {
                 left: 20,
                 right: 10,
                 top: 10,
-                bottom: Platform.isAndroid ? 20 : 10,
+                bottom: 10,
               ),
               decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: Color(0xFFEEEEEE),
-                  ),
-                ),
+                border: Border(top: BorderSide(color: Color(0xFFEEEEEE))),
               ),
               child: Row(
                 children: [
@@ -207,23 +198,16 @@ class ChatPage extends GetView<ChatLogic> {
   // 底部区域
   Widget _buildBottom() {
     return FlutterSwitchPanel(
-      panelHeight: 180,
+      panelHeight: 160,
       controller: controller.switchPanelController,
-      children: [
-        _buildEmojiPickerPanel(),
-        _buildToolPanel(),
-      ],
+      children: [_buildEmojiPickerPanel(), _buildToolPanel()],
     );
   }
 
   // 底部表情选择容器
   Widget _buildEmojiPickerPanel() {
     return GridView.builder(
-      padding: const EdgeInsets.only(
-        left: 30,
-        right: 30,
-        top: 10,
-      ),
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
       itemCount: 100,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 32,
@@ -233,9 +217,7 @@ class ChatPage extends GetView<ChatLogic> {
       itemBuilder: (BuildContext context, int index) {
         //'assets/emoji/emoji-1.svg'
         int id = index + 1;
-        return SvgPicture.asset(
-          'images/emoji/emoji-$id.svg',
-        );
+        return SvgPicture.asset('images/emoji/emoji-$id.svg');
       },
     );
   }
@@ -243,9 +225,7 @@ class ChatPage extends GetView<ChatLogic> {
   // 工具箱容器
   Widget _buildToolPanel() {
     return GridView(
-      padding: const EdgeInsets.only(
-        top: 20,
-      ),
+      padding: const EdgeInsets.only(top: 10),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
         mainAxisSpacing: 20,
@@ -253,31 +233,31 @@ class ChatPage extends GetView<ChatLogic> {
       ),
       children: [
         _buildToolItem(
-          name: "相册",
+          name: "Album", //"相册"
           icon: "images/tools/chatAlbum.webp",
         ),
         _buildToolItem(
-          name: "拍摄",
+          name: "Photo", //"拍摄"
           icon: "images/tools/chatCamera.webp",
         ),
         _buildToolItem(
-          name: "音视频通话",
+          name: "Call", //"音视频通话"
           icon: "images/tools/chatCall.webp",
         ),
         _buildToolItem(
-          name: "文件",
+          name: "File", //"文件"
           icon: "images/tools/chatFile.webp",
         ),
         _buildToolItem(
-          name: "红包",
+          name: "Wallet", //"红包"
           icon: "images/tools/chatHongbao.webp",
         ),
         _buildToolItem(
-          name: "转账",
+          name: "Transfer", //"转账"
           icon: "images/tools/chatTransfer.webp",
         ),
         _buildToolItem(
-          name: "收藏",
+          name: "Collect", //收藏
           icon: "images/tools/chatCollect.webp",
         ),
       ],
@@ -289,20 +269,11 @@ class ChatPage extends GetView<ChatLogic> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          icon,
-          width: 24,
-          height: 24,
-        ),
+        Image.asset(icon, width: 24, height: 24),
         6.verticalSpace,
         Text(
           name,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Color(
-              0xFF333333,
-            ),
-          ),
+          style: const TextStyle(fontSize: 15, color: Color(0xFF333333)),
         ),
       ],
     );

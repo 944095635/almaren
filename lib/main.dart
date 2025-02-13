@@ -25,13 +25,18 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         splashFactory: NoSplash.splashFactory,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.transparent,
           elevation: 0,
           scrolledUnderElevation: 0,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarBrightness: Brightness.light,
             statusBarIconBrightness: Brightness.dark,
+            //底部导航栏
+            systemNavigationBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.dark,
+            systemNavigationBarContrastEnforced: false, //底部强制反转色
           ),
         ),
         colorScheme: ColorScheme.light(
@@ -58,7 +63,6 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(fontSize: 20), //  大 - 输入框 (默认字体)
           bodyMedium: TextStyle(fontSize: 16), // 字体 默认
           bodySmall: TextStyle(), //  小 (部分水印提示信息)
-
           /// 标签样式 标签样式是较小的实用样式，用于UI区域  例如组件内部的文本 或 内容正文，如标题。
           labelLarge: TextStyle(fontSize: 20), // 按钮 (默认字体)
           labelMedium: TextStyle(),
@@ -103,11 +107,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         extensions: <ThemeExtension<dynamic>>[
-          const AppTheme(
-            hintMedium: TextStyle(
-              color: ThemeColors.hintColor,
-            ),
-          ),
+          const AppTheme(hintMedium: TextStyle(color: ThemeColors.hintColor)),
         ],
       ),
       darkTheme: ThemeData(
