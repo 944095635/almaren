@@ -38,6 +38,8 @@ dependencies:
   shared_preferences: ^2.5.1 #数据缓存
   flutter_smart_dialog: ^4.9.8+6  #消息弹窗
   get: ^5.0.0-release-candidate-9.2.1 #GetX
+  wechat_assets_picker: ^9.4.2    #微信风格的资源选择
+  wechat_camera_picker: ^4.3.7    #微信风格的相机组件
   flutter_svg: ^2.0.17
   flutter_styled:                #布局样式
     #path: ../flutter_styled // 本地引用方式

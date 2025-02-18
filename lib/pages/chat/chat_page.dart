@@ -1,4 +1,8 @@
+import 'package:almaren/models/message.dart';
+import 'package:almaren/models/message_type.dart';
 import 'package:almaren/pages/chat/chat_logic.dart';
+import 'package:almaren/pages/chat/message/image_message.dart';
+import 'package:almaren/pages/chat/message/text_message.dart';
 import 'package:almaren/utils/keyboard_utils.dart';
 import 'package:almaren/values/colors.dart';
 import 'package:almaren/values/sizes.dart';
@@ -76,53 +80,108 @@ class ChatPage extends GetView<ChatLogic> {
       extendBody: true,
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
-      body: _buildView(context),
+      body: _buildView(),
       bottomNavigationBar: _buildInputView(context),
     );
   }
 
   // 主视图
-  Widget _buildView(BuildContext context) {
-    /// 计算图片的缓存宽度 1.5倍超采样
-    int cacheWidth = (MediaQuery.sizeOf(context).width * 1.5).toInt();
-
+  Widget _buildView() {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
         KeyboardUtils.hide();
         controller.switchPanelController.hide();
       },
-      child: CustomScrollView(
-        controller: controller.scrollController,
-        slivers: [
-          SliverSafeArea(
-            sliver: SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              sliver: SliverList.separated(
-                itemCount: 7,
-                itemBuilder: (context, index) {
-                  if (index <= 6) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ClipRRect(
-                        borderRadius: Sizes.borderRadius,
-                        child: Image.asset(
-                          "images/img/${index + 1}.jpg",
-                          cacheWidth: cacheWidth,
-                        ),
-                      ),
-                    );
-                  }
-                  return ListTile(title: Text(index.toString()));
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return 20.verticalSpace;
-                },
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return CustomScrollView(
+            cacheExtent: 2000,
+            controller: controller.scrollController,
+            slivers: [
+              SliverSafeArea(
+                sliver: SliverPadding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  sliver: _buildList(constraints),
+                ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
+    );
+  }
+
+  Widget _buildList(BoxConstraints constraints) {
+    /// 计算图片的缓存宽度 1.5倍超采样
+    //int cacheWidth = (MediaQuery.sizeOf(context).width * 1.5).toInt();
+    return Obx(
+      () => SliverList.separated(
+        itemCount: controller.message.length,
+        itemBuilder: (context, index) {
+          Message message = controller.message[index];
+          return _buildItem(message, constraints);
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return 20.verticalSpace;
+        },
+      ),
+    );
+  }
+
+  Widget _buildItem(Message message, BoxConstraints constraints) {
+    List<Widget> children = List.empty(growable: true);
+    // 内容组件
+    Widget content;
+    // 根绝类型渲染对应组件
+    switch (message.type) {
+      case MessageType.text:
+        content = TextMessage(message: message);
+        break;
+      case MessageType.image:
+        content = ImageMessage(message: message);
+        break;
+      default:
+        content = SizedBox();
+        break;
+    }
+
+    ConstrainedBox render = ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: constraints.maxWidth / 2),
+      child: content,
+    );
+
+    /// 头像组件
+    Widget avatar = ClipRRect(
+      borderRadius: Sizes.borderRadiusSmall,
+      child: AvatarWidget(size: 40, avatar: controller.chat?.portrait),
+    );
+    if (message.send) {
+      //发出消息
+      children.add(
+        Expanded(child: Align(alignment: Alignment.centerRight, child: render)),
+      );
+      children.add(
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 20),
+          child: avatar,
+        ),
+      );
+    } else {
+      //收到消息
+      children.add(
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 10),
+          child: avatar,
+        ),
+      );
+      children.add(
+        Expanded(child: Align(alignment: Alignment.centerLeft, child: render)),
+      );
+    }
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children,
     );
   }
 
@@ -161,6 +220,7 @@ class ChatPage extends GetView<ChatLogic> {
                   //leadingDistribution: TextLeadingDistribution.proportional,
                 ),
                 child: TextField(
+                  controller: controller.inputController,
                   onChanged: (value) {
                     controller.showSend.value = value.isNotEmpty;
                   },
@@ -182,7 +242,7 @@ class ChatPage extends GetView<ChatLogic> {
                       () =>
                           controller.showSend.value
                               ? IconButton(
-                                onPressed: () {},
+                                onPressed: controller.sendText,
                                 icon: SvgPicture.asset(
                                   "images/send.svg",
                                   width: 20,
@@ -250,10 +310,12 @@ class ChatPage extends GetView<ChatLogic> {
         _buildToolItem(
           name: "Album", //"相册"
           icon: "images/tools/chatAlbum.webp",
+          onTap: controller.ontapAlbum,
         ),
         _buildToolItem(
           name: "Photo", //"拍摄"
           icon: "images/tools/chatCamera.webp",
+          onTap: controller.ontapPhoto,
         ),
         _buildToolItem(
           name: "Call", //"音视频通话"
@@ -280,17 +342,25 @@ class ChatPage extends GetView<ChatLogic> {
   }
 
   // 工具箱单项
-  Widget _buildToolItem({required String name, required String icon}) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(icon, width: 24, height: 24),
-        6.verticalSpace,
-        Text(
-          name,
-          style: const TextStyle(fontSize: 15, color: Color(0xFF333333)),
-        ),
-      ],
+  Widget _buildToolItem({
+    required String name,
+    required String icon,
+    Function()? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(icon, width: 24, height: 24),
+          6.verticalSpace,
+          Text(
+            name,
+            style: const TextStyle(fontSize: 15, color: Color(0xFF333333)),
+          ),
+        ],
+      ),
     );
   }
 }

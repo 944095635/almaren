@@ -1,4 +1,6 @@
 class Chat {
+  // 用户Id
+  late String id;
   //显示名
   late String name;
   //显示标题
