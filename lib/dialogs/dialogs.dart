@@ -7,64 +7,63 @@ import 'package:get/get.dart';
 class Dialogs {
   static Future<bool?> showAsk(String title, String msg) {
     return Get.bottomSheet(
-        SafeArea(
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: Sizes.buttonPaddingValue,
-              right: Sizes.buttonPaddingValue,
-              bottom: Sizes.buttonPaddingValue,
+      SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: Sizes.buttonPaddingValue,
+            right: Sizes.buttonPaddingValue,
+            bottom: Sizes.buttonPaddingValue,
+          ),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: Sizes.borderRadiusBig,
             ),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: Sizes.borderRadiusBig,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  20.verticalSpace,
-                  Padding(
-                    padding: Sizes.contentHorizontalPadding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          title,
-                          style:
-                              Theme.of(Get.context!).textTheme.headlineMedium,
-                        ),
-                        20.verticalSpace,
-                        Text(msg),
-                      ],
-                    ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                20.verticalSpace,
+                Padding(
+                  padding: Sizes.contentHorizontalPadding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        title,
+                        style: Theme.of(Get.context!).textTheme.headlineMedium,
+                      ),
+                      20.verticalSpace,
+                      Text(msg),
+                    ],
                   ),
-                  20.verticalSpace,
-                  Padding(
-                    padding: Sizes.buttonHorizontalPadding,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.backLegacy(result: true);
-                      },
-                      child: Text("Confirm"),
-                    ),
+                ),
+                20.verticalSpace,
+                Padding(
+                  padding: Sizes.buttonHorizontalPadding,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.backLegacy(result: true);
+                    },
+                    child: Text("Confirm"),
                   ),
-                  10.verticalSpace,
-                  Padding(
-                    padding: Sizes.buttonHorizontalPadding,
-                    child: TextButton(
-                      onPressed: () {
-                        Get.backLegacy(result: false);
-                      },
-                      child: Text("Cancel"),
-                    ),
+                ),
+                10.verticalSpace,
+                Padding(
+                  padding: Sizes.buttonHorizontalPadding,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.backLegacy(result: false);
+                    },
+                    child: Text("Cancel"),
                   ),
-                  20.verticalSpace,
-                ],
-              ),
+                ),
+                20.verticalSpace,
+              ],
             ),
           ),
         ),
-        shape: CircleBorder());
+      ),
+    );
   }
 }
