@@ -8,9 +8,7 @@ almaren im
 
 设计图作者：Almaren社交APP设计-MasterGo 社区 https://mastergo.com/community/resource/10124
 
-<img src="https://raw.githubusercontent.com/944095635/almaren/master/cover.png" >
-
-<img src="https://raw.githubusercontent.com/944095635/almaren/master/HOME.png" width='360'>
+<img src="https://raw.githubusercontent.com/944095635/almaren/master/preview.jpeg" >
 
 <br></br>
 #### 说明:
