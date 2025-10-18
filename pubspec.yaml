@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.2+2
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.9.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,12 +35,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   easy_refresh: ^3.4.0       #下拉刷新
-  shared_preferences: ^2.5.1 #数据缓存
-  flutter_smart_dialog: ^4.9.8+6  #消息弹窗
-  get: ^5.0.0-release-candidate-9.2.1 #GetX
-  wechat_assets_picker: ^9.4.2    #微信风格的资源选择
-  wechat_camera_picker: ^4.3.7    #微信风格的相机组件
-  flutter_svg: ^2.0.17
+  shared_preferences: ^2.5.3 #数据缓存
+  flutter_smart_dialog: ^4.9.8+9  #消息弹窗
+  get: ^5.0.0-release-candidate-9.3.2 #GetX
+  wechat_assets_picker: ^9.8.0    #微信风格的资源选择
+  wechat_camera_picker: ^4.4.0    #微信风格的相机组件
+  flutter_svg: ^2.2.1
   flutter_styled:                #布局样式
     #path: ../flutter_styled // 本地引用方式
     git: 
@@ -61,7 +61,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
-  flutter_launcher_icons: ^0.14.3
+  flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
   android: "ic_launcher"

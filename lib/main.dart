@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           labelMedium: TextStyle(),
           labelSmall: TextStyle(),
         ),
-        bottomAppBarTheme: BottomAppBarTheme(
+        bottomAppBarTheme: BottomAppBarThemeData(
           elevation: 0,
           color: Colors.transparent,
         ),
