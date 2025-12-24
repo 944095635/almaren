@@ -12,11 +12,6 @@ class SplashPage extends StatelessWidget {
     await Future.delayed(const Duration(milliseconds: 1500));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString("init") != null) {
-      //TODO 后面删除这个
-      precacheImage(
-        const AssetImage("assets/images/avatar/1.jpg"),
-        Get.context!,
-      );
       Get.offAll(() => const FramePage(), transition: Transition.fadeIn);
     } else {
       precacheImage(
