@@ -34,7 +34,7 @@ class SliverBottomWidget extends StatelessWidget {
             left: padding,
             right: padding,
             // 如果安全区域小于最低页面边距则使用页面边距.
-            bottom: math.max(bottom, 20),
+            bottom: bottom <= 10 ? 15 : math.max(bottom, 40),
           ),
           child: child,
         ),
