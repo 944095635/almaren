@@ -24,7 +24,20 @@ class SliverBottomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = 30.0;
-    final bottom = MediaQuery.of(context).padding.bottom;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+    // debugPrint("padding:" + MediaQuery.of(context).padding.toString());
+    // debugPrint("viewPadding:" + MediaQuery.of(context).viewPadding.toString());
+    final double bottom;
+    if (bottomPadding <= 10) {
+      // 键盘开启状态
+      bottom = 15;
+    } else if (bottomPadding >= 45) {
+      // 导航栏开启状态
+      bottom = 60;
+    } else {
+      // 如果安全区域小于最低页面边距则使用页面边距.
+      bottom = math.max(bottomPadding, 40);
+    }
     return SliverFillRemaining(
       hasScrollBody: false,
       child: Align(
@@ -33,8 +46,7 @@ class SliverBottomWidget extends StatelessWidget {
           padding: EdgeInsets.only(
             left: padding,
             right: padding,
-            // 如果安全区域小于最低页面边距则使用页面边距.
-            bottom: bottom <= 10 ? 15 : math.max(bottom, 40),
+            bottom: bottom,
           ),
           child: child,
         ),
