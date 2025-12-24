@@ -27,6 +27,9 @@ class MyApp extends StatelessWidget {
           surface: Color(0xFF212529), //表面颜色，按钮 等颜色
         ),
         textTheme: TextTheme(
+          /// 正文样式
+          bodyLarge: TextStyle(fontSize: 20), //  大 - 输入框 (默认字体)
+
           labelLarge: TextStyle(fontSize: 19), // 按钮 (默认字体)
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -39,6 +42,19 @@ class MyApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Color(0xFFF8F9FA),
+          hintStyle: TextStyle(color: Color(0xFFADB5BD)),
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
       ),

@@ -1,6 +1,8 @@
-import 'package:almaren/widgets/body_safe_widget.dart';
+import 'package:almaren/page/login/login_page.dart';
+import 'package:almaren/theme/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled/size_extension.dart';
+import 'package:get/get.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -18,7 +20,8 @@ class IntroPage extends StatelessWidget {
             "assets/images/intro_bg.jpg",
           ),
           Expanded(
-            child: BodySafeWidget(
+            child: Padding(
+              padding: Dimensions.safePadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,8 +37,10 @@ class IntroPage extends StatelessWidget {
                   ),
                   Spacer(),
                   ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Continue with phone"),
+                    onPressed: () {
+                      Get.to(() => const LoginPage());
+                    },
+                    child: Text("Continue with phone"),
                   ),
                 ],
               ),
