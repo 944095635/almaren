@@ -28,7 +28,7 @@ class BodySafeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final padding = 15.0;
+    final padding = 30.0;
     final bottom = MediaQuery.of(context).padding.bottom;
     return Padding(
       padding: EdgeInsets.only(
@@ -36,7 +36,7 @@ class BodySafeWidget extends StatelessWidget {
         left: padding,
         right: padding,
         // 如果安全区域小于最低页面边距则使用页面边距.
-        bottom: math.max(bottom, padding),
+        bottom: math.max(bottom, 50),
       ),
       child: child,
     );

@@ -19,9 +19,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Poppins",
         scaffoldBackgroundColor: Colors.white,
+        splashFactory: NoSplash.splashFactory,
         appBarTheme: AppBarTheme(
+          elevation: 0,
+          scrolledUnderElevation: 0,
           backgroundColor: Colors.transparent,
           systemOverlayStyle: SystemUiOverlayStyle.dark,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
         ),
         colorScheme: ColorScheme.light(
           primary: Colors.white, //按钮文字颜色 进度条
@@ -30,8 +37,12 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           /// 正文样式
           bodyLarge: TextStyle(fontSize: 20), //  大 - 输入框 (默认字体)
+          bodyMedium: TextStyle(fontSize: 16), // 字体 默认
 
           labelLarge: TextStyle(fontSize: 19), // 按钮 (默认字体)
+        ),
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: Color(0xFF212529),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
