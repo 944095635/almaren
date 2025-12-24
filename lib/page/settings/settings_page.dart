@@ -57,6 +57,10 @@ class SettingsPage extends GetView<SettingsLogic> {
                   title: "Privacy and security",
                   onTap: () {},
                 ),
+                MenuItem(
+                  title: "Logout",
+                  onTap: controller.logout,
+                ),
               ],
             ),
           ),
