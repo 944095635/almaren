@@ -1,6 +1,7 @@
 import 'package:almaren/page/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+      builder: FlutterSmartDialog.init(),
       home: const SplashPage(),
     );
   }

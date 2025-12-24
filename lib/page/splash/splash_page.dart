@@ -1,3 +1,4 @@
+import 'package:almaren/page/frame/frame_page.dart';
 import 'package:almaren/page/intro/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ class SplashPage extends StatelessWidget {
     await Future.delayed(const Duration(milliseconds: 1500));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString("init") != null) {
-      //Get.offAll(() => const FramePage());
+      Get.offAll(() => const FramePage(), transition: Transition.fadeIn);
     } else {
       precacheImage(
         const AssetImage("assets/images/intro_bg.jpg"),
