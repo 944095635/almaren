@@ -3,7 +3,6 @@ import 'package:almaren/widgets/blur_widget.dart';
 import 'package:almaren/widgets/body_title.dart';
 import 'package:almaren/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled/size_extension.dart';
 import 'package:get/state_manager.dart';
 
 /// 个人中心页面
