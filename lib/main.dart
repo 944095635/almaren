@@ -1,5 +1,6 @@
 import 'package:almaren/page/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -13,11 +14,35 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Almaren',
+      defaultTransition: Transition.rightToLeft,
       theme: ThemeData(
         fontFamily: "Poppins",
         scaffoldBackgroundColor: Colors.white,
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+        ),
+        colorScheme: ColorScheme.light(
+          primary: Colors.white, //按钮文字颜色 进度条
+          surface: Color(0xFF212529), //表面颜色，按钮 等颜色
+        ),
+        textTheme: TextTheme(
+          labelLarge: TextStyle(fontSize: 19), // 按钮 (默认字体)
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            minimumSize: WidgetStatePropertyAll(
+              Size.fromHeight(56),
+            ),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ),
       ),
+      debugShowCheckedModeBanner: false,
       home: const SplashPage(),
     );
   }
