@@ -70,6 +70,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  flutter_openim_sdk:
+    dependency: "direct main"
+    description:
+      name: flutter_openim_sdk
+      sha256: dcda8114919a642285955d59c1730214dda3799afe872d1033ffb26f554d5ac0
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.8.3+hotfix.10.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
