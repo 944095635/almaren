@@ -2,6 +2,7 @@ import 'package:almaren/page/chats/chats_logic.dart';
 import 'package:almaren/page/chats/chats_page.dart';
 import 'package:almaren/page/contacts/contacts_logic.dart';
 import 'package:almaren/page/contacts/contacts_page.dart';
+import 'package:almaren/page/settings/settings_logic.dart';
 import 'package:almaren/page/settings/settings_page.dart';
 import 'package:almaren/widgets/blur_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _FramePageState extends State<FramePage> {
     super.initState();
     Get.put(ChatsLogic());
     Get.put(ContactsLogic());
+    Get.put(SettingsLogic());
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:almaren/models/contacts.dart';
 import 'package:almaren/page/contacts/contacts_item.dart';
 import 'package:almaren/page/contacts/contacts_logic.dart';
+import 'package:almaren/widgets/blur_widget.dart';
 import 'package:almaren/widgets/body_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,22 @@ class ContactsPage extends GetView<ContactsLogic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBody(),
+      appBar: AppBar(
+        title: FadeTransition(
+          opacity: controller.fadeAnimation,
+          child: Text(
+            "Contacts",
+          ),
+        ),
+        centerTitle: false,
+        flexibleSpace: BlurWidget(
+          child: SizedBox.expand(),
+        ),
+      ),
+      extendBodyBehindAppBar: true,
+      body: controller.obx(
+        (state) => _buildBody(),
+      ),
     );
   }
 

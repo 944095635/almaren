@@ -1,6 +1,5 @@
 import 'package:almaren/mixin/appbar_mixin.dart';
 import 'package:almaren/models/chat.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChatsLogic extends GetxController
@@ -11,11 +10,7 @@ class ChatsLogic extends GetxController
   @override
   void onInit() {
     super.onInit();
-    fadeController = AnimationController(
-      duration: Duration(milliseconds: 300),
-      vsync: this,
-    );
-    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(fadeController!);
+    onInitAnimation(this);
     _loadData();
   }
 

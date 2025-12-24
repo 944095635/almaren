@@ -10,8 +10,17 @@ mixin AppBarMixin on GetxController {
   late Animation<double> fadeAnimation;
 
   /// 滚动列表的控制器
-  late ScrollController scrollController = ScrollController()
-    ..addListener(() {
+  final ScrollController scrollController = ScrollController();
+
+  /// 初始化
+  void onInitAnimation(GetSingleTickerProviderStateMixin item) {
+    fadeController = AnimationController(
+      duration: Duration(milliseconds: 300),
+      vsync: item,
+    );
+    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(fadeController!);
+
+    scrollController.addListener(() {
       if (scrollController.offset >= 50) {
         //titleOpacity.value = 1;
         fadeController?.forward();
@@ -25,6 +34,7 @@ mixin AppBarMixin on GetxController {
         }
       }
     });
+  }
 
   @override
   void onClose() {

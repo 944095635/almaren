@@ -12,12 +12,7 @@ class ContactsLogic extends GetxController
   @override
   void onInit() {
     super.onInit();
-    fadeController = AnimationController(
-      duration: Duration(milliseconds: 300),
-      vsync: this,
-    );
-    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(fadeController!);
-
+    onInitAnimation(this);
     _loadData();
   }
 
@@ -30,52 +25,52 @@ class ContactsLogic extends GetxController
     contacts.add(
       Contacts()
         ..name = "Dream.Machine"
-        ..portrait = "images/avatar/1.jpg",
+        ..portrait = "assets/images/avatar/1.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Fudio X"
-        ..portrait = "images/avatar/7.jpg",
+        ..portrait = "assets/images/avatar/7.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "❤️ Ruben Dias ❤️"
-        ..portrait = "images/avatar/8.jpg",
+        ..portrait = "assets/images/avatar/8.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Livia Herwitz"
-        ..portrait = "images/avatar/6.jpg",
+        ..portrait = "assets/images/avatar/6.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Emerson Herwitz"
-        ..portrait = "images/avatar/9.jpg",
+        ..portrait = "assets/images/avatar/9.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Giana Torff"
-        ..portrait = "images/avatar/5.jpg",
+        ..portrait = "assets/images/avatar/5.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Dulce Bator"
-        ..portrait = "images/avatar/4.jpg",
+        ..portrait = "assets/images/avatar/4.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Aspen Last"
-        ..portrait = "images/avatar/10.jpg",
+        ..portrait = "assets/images/avatar/10.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Emerson Herwitz"
-        ..portrait = "images/avatar/3.jpg",
+        ..portrait = "assets/images/avatar/3.jpg",
     );
     contacts.add(
       Contacts()
         ..name = "Spoony"
-        ..portrait = "images/avatar/2.jpg",
+        ..portrait = "assets/images/avatar/2.jpg",
     );
 
     change(GetStatus.success(contacts));

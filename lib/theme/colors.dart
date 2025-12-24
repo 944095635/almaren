@@ -7,6 +7,12 @@ class ThemeColors {
   static const Color msgByMe = Color(0xFFE9ECEF);
   static const Color msgByOther = Color(0xFFF8F9FA);
 
+  /// 主题色 fix
+  static const Color themeColor = Color(0xFF007AFF);
+
+  /// 提示警告色
+  static const Color dangerColor = Color(0xFFFF574D);
+
   /// 背景色
   static const Color bgColor = Color(0xFFF8F9FA);
 
