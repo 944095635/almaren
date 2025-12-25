@@ -53,8 +53,6 @@ class SplashPage extends StatelessWidget {
       Permission.camera,
       // 麦克风 🎤 权限
       Permission.microphone,
-      // 通知   📢 权限
-      Permission.notification,
     ], growable: true);
 
     if (Platform.isAndroid) {
@@ -75,7 +73,7 @@ class SplashPage extends StatelessWidget {
       }
 
       /// 悬浮窗权限
-      permissionList.add(Permission.systemAlertWindow);
+      // permissionList.add(Permission.systemAlertWindow);
     } else {
       /// 针对非安卓系统
       permissionList.add(Permission.photos);
