@@ -58,15 +58,4 @@ class PickAssetsUtils {
       },
     );
   }
-
-  /// 选择文件
-  // static Future<FilePickerResult?> pickFile() async {
-  //   // 手机端需要清理缓存 TODO 这个要询问原因
-  //   if (PlatformUtils.isPhone) {
-  //     await FilePicker.platform.clearTemporaryFiles();
-  //   }
-  //   return FilePicker.platform.pickFiles(
-  //     allowMultiple: true,
-  //   );
-  // }
 }

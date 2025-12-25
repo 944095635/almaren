@@ -145,7 +145,9 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ),
     );
-
+    
+    /// 设置背景
+    // ignore: dead_code
     if (hasBackground) {
       // return Stack(
       //   fit: StackFit.expand,

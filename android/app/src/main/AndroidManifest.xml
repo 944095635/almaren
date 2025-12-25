@@ -42,4 +42,13 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
+    <!-- 请求图片和视频权限 -->
+    <!-- 允许应用访问设备上的‌图片文件‌（包括相册中的照片）。从Android 13（API 33）开始，该权限替代了部分READ_EXTERNAL_STORAGE的功能 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- 允许应用访问设备上的‌视频文件‌（如相册中的视频）。同样从Android 13引入，用于替代READ_EXTERNAL_STORAGE对视频文件的访问权限‌ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 </manifest>

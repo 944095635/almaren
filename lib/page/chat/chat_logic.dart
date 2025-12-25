@@ -4,7 +4,6 @@ import 'package:almaren/models/chat.dart';
 import 'package:almaren/models/message.dart';
 import 'package:almaren/utils/pick_assets_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
@@ -18,9 +17,6 @@ class ChatLogic extends GetxController {
 
   /// 滚动条控制器
   final ScrollController scrollController = ScrollController();
-
-  /// 缓存管理器
-  static final DefaultCacheManager _cacheManager = DefaultCacheManager();
 
   /// 是否拥有滚动条
   bool hasScroll = false;

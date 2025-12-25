@@ -40,7 +40,7 @@ dependencies:
   http: ^1.6.0
 
   # 系统接口
-  path_provider: ^2.1.5
+  # path_provider: ^2.1.5
   device_info_plus: ^12.2.0           # 设备信息(全平台支持)
   permission_handler: ^12.0.1         # 权限处理(不支持PC - MacOS)
 
@@ -51,7 +51,7 @@ dependencies:
   # 数据存储
   xml: ^6.6.1                         # xml解析 - 解析表情包文件
   shared_preferences: ^2.5.4
-  flutter_cache_manager: ^3.4.1       # 缓存
+  # flutter_cache_manager: ^3.4.1       # 缓存
 
   # UI交互
   easy_refresh: ^3.4.0                # 下拉刷新
