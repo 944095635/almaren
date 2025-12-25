@@ -1,6 +1,7 @@
-import 'package:almaren/mixin/appbar_mixin.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:almaren/mixin/appbar_mixin.dart';
+import 'package:almaren/page/intro/intro_page.dart';
 
 class SettingsLogic extends GetxController
     with AppBarMixin, StateMixin, GetSingleTickerProviderStateMixin {
@@ -23,5 +24,6 @@ class SettingsLogic extends GetxController
 
     //   Get.offAll(() => SplashPage(), transition: Transition.downToUp);
     // }
+    Get.offAll(() => IntroPage(), transition: Transition.downToUp);
   }
 }

@@ -1,5 +1,7 @@
+import 'package:almaren/page/chat/chat_emoji_widget.dart';
 import 'package:almaren/page/chat/chat_input_button.dart';
 import 'package:almaren/page/chat/chat_input_controller.dart';
+import 'package:almaren/page/chat/chat_input_tools.dart';
 import 'package:almaren/page/chat/enum/chat_input_type.dart';
 import 'package:almaren/theme/dimensions.dart';
 import 'package:chat_bottom_container/panel_container.dart';
@@ -125,7 +127,7 @@ class _ChatInputState extends State<ChatInput> {
             _buildInput(),
             // 底部容器
             ChatBottomPanelContainer<ChatInputType>(
-              panelBgColor: Colors.white,
+              panelBgColor: Colors.transparent,
               // 控制器（必传，ChatBottomPanelContainerController）
               // panelBgColor: const Color(0xFFFBFBFB),
               controller: _controller,
@@ -184,7 +186,6 @@ class _ChatInputState extends State<ChatInput> {
   Widget _buildInput() {
     return Container(
       decoration: const BoxDecoration(
-        color: Colors.white,
         border: Border(
           top: BorderSide(
             width: 1,
@@ -304,16 +305,14 @@ class _ChatInputState extends State<ChatInput> {
   Widget _buildToolPanel() {
     return SizedBox(
       height: 240,
-      // color: Colors.white,
-      // color: const Color(0xFFFBFBFB),
-      // child: ChatInputTools(
-      //   onTapFile: widget.onTapMenuFile,
-      //   onTapAlbum: widget.onTapAlbum,
-      //   onTapCamera: widget.onTapCamera,
-      //   onTapCollect: widget.onTapMenuCollect,
-      //   onTapTransfer: widget.onTapMenuTransfer,
-      //   onTapRedPacket: widget.onTapMenuRedPacket,
-      // ),
+      child: ChatInputTools(
+        onTapFile: widget.onTapMenuFile,
+        onTapAlbum: widget.onTapAlbum,
+        onTapCamera: widget.onTapCamera,
+        onTapCollect: widget.onTapMenuCollect,
+        onTapTransfer: widget.onTapMenuTransfer,
+        onTapRedPacket: widget.onTapMenuRedPacket,
+      ),
     );
   }
 
@@ -332,22 +331,22 @@ class _ChatInputState extends State<ChatInput> {
     }
     return SizedBox(
       height: height,
-      // child: ChatEmojiWidget(
-      //   onTap: (emoji) {
-      //     final text = _textController.text;
-      //     final selection = _textController.selection;
-      //     final int start = selection.isValid ? selection.start : text.length;
-      //     final int end = selection.isValid ? selection.end : text.length;
-      //     final newText = text.replaceRange(start, end, emoji);
-      //     final int newOffset = start + emoji.length;
-      //     _textController.value = TextEditingValue(
-      //       text: newText,
-      //       selection: TextSelection.collapsed(offset: newOffset),
-      //       composing: TextRange.empty,
-      //     );
-      //     _inputFocusNode.requestFocus();
-      //   },
-      // ),
+      child: ChatEmojiWidget(
+        onTap: (emoji) {
+          final text = _textController.text;
+          final selection = _textController.selection;
+          final int start = selection.isValid ? selection.start : text.length;
+          final int end = selection.isValid ? selection.end : text.length;
+          final newText = text.replaceRange(start, end, emoji);
+          final int newOffset = start + emoji.length;
+          _textController.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: newOffset),
+            composing: TextRange.empty,
+          );
+          _inputFocusNode.requestFocus();
+        },
+      ),
     );
   }
 

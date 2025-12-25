@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:almaren/models/chat.dart';
 import 'package:almaren/models/message.dart';
+import 'package:almaren/utils/pick_assets_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 /// 聊天页面
 class ChatLogic extends GetxController {
@@ -14,6 +18,9 @@ class ChatLogic extends GetxController {
 
   /// 滚动条控制器
   final ScrollController scrollController = ScrollController();
+
+  /// 缓存管理器
+  static final DefaultCacheManager _cacheManager = DefaultCacheManager();
 
   /// 是否拥有滚动条
   bool hasScroll = false;
@@ -27,10 +34,21 @@ class ChatLogic extends GetxController {
   void _initData() {
     messages.add(
       TextMessage(
-        avatar: "assets/images/avatar/1.jpg",
+        avatar: "assets/images/avatar/2.jpg",
         name: "滨崎步",
         self: true,
-        text: '你好，非常高兴认识你',
+        text: 'Hello, I\'m very pleased to meet you',
+      ),
+    );
+
+    messages.add(
+      ImageMessage(
+        avatar: chat.portrait,
+        name: "滨崎步",
+        self: false,
+        image: "assets/images/intro_bg.jpg",
+        w: 1342,
+        h: 2013,
       ),
     );
 
@@ -39,7 +57,7 @@ class ChatLogic extends GetxController {
         avatar: chat.portrait,
         name: "滨崎步",
         self: false,
-        text: '你好，我是 滨崎步。',
+        text: 'Hello, I\'m Ayumi Hamasaki.',
       ),
     );
 
@@ -96,14 +114,45 @@ class ChatLogic extends GetxController {
   void onTapSend(String text) {
     final TextMessage msg = TextMessage(
       text: text,
-      avatar: "assets/images/avatar/1.jpg",
+      avatar: "assets/images/avatar/2.jpg",
       name: "",
       self: true,
     );
     _insertMessageSend(msg);
   }
 
-  void onTapAlbum() {}
+  /// 相册
+  void onTapAlbum() async {
+    final List<AssetEntity>? assets = await PickAssetsUtils.pickAssets(
+      type: RequestType.common,
+      // specialPickerType: SpecialPickerType.wechatMoment,
+    );
+    if (assets != null) {
+      for (final asset in assets) {
+        if (asset.type == AssetType.image) {
+          await _sendImage(asset);
+        } else if (asset.type == AssetType.video) {
+          // await _sendVideo(asset);
+        }
+      }
+    }
+  }
+
+  /// 处理图片和上传
+  Future _sendImage(AssetEntity asset) async {
+    final File? file = await asset.file;
+    if (file?.existsSync() == true) {
+      final msg = ImageMessage(
+        avatar: chat.portrait,
+        name: "",
+        self: true,
+        image: file!.path,
+        w: asset.width.toDouble(),
+        h: asset.height.toDouble(),
+      );
+      _insertMessageSend(msg);
+    }
+  }
 
   void onTapCamera() {}
 

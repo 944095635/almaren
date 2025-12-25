@@ -3,9 +3,11 @@ import 'package:almaren/page/chat/chat_input.dart';
 import 'package:almaren/page/chat/chat_input_controller.dart';
 import 'package:almaren/page/chat/chat_logic.dart';
 import 'package:almaren/page/chat/chat_message_item.dart';
+import 'package:almaren/page/common/preview_image_page.dart';
 import 'package:almaren/theme/colors.dart';
 import 'package:almaren/theme/dimensions.dart';
 import 'package:almaren/widgets/avatar_widget.dart';
+import 'package:almaren/widgets/blur_widget.dart';
 import 'package:almaren/widgets/online_box_widget.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
@@ -93,10 +95,16 @@ class _ChatPageState extends State<ChatPage> {
           ),
           5.horizontalSpace,
         ],
+        flexibleSpace: BlurWidget(
+          child: SizedBox.expand(),
+        ),
       ),
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
       //backgroundColor: const Color(0xFFFBFBFB),
       body: _buildBody(),
+      bottomNavigationBar: _buildInput(),
     );
   }
 
@@ -105,48 +113,37 @@ class _ChatPageState extends State<ChatPage> {
     // 未来支持更换背景
     bool hasBackground = false;
 
-    Widget body = Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // 列表
-        Expanded(
-          child: Listener(
-            behavior: HitTestBehavior.opaque,
-            onPointerDown: (event) {
-              // Hide panel when touch ListView.
-              _chatInputController.notify();
-            },
-            onPointerUp: (event) {
-              logic.checkScrollPhysics(force: true);
-            },
-            child: Scrollbar(
-              controller: logic.scrollController,
-              child: EasyRefresh(
-                onLoad: logic.loadMore,
-                footer: ClassicFooter(
-                  iconDimension: 0,
-                  dragText: "",
-                  armedText: "",
-                  processedText: "",
-                  processingText: "",
-                  showMessage: false,
-                  infiniteOffset: null,
-                  failedText: '加载失败',
-                  triggerWhenReach: true,
-                  noMoreText: "没有更早的消息",
-                  textStyle: TextStyle(color: Color(0xFF666666)),
-                  pullIconBuilder: (context, state, animation) =>
-                      const SizedBox.shrink(),
-                ),
-                child: _buildList(),
-              ),
-            ),
+    Widget body = Listener(
+      behavior: HitTestBehavior.opaque,
+      onPointerDown: (event) {
+        // Hide panel when touch ListView.
+        _chatInputController.notify();
+      },
+      onPointerUp: (event) {
+        logic.checkScrollPhysics(force: true);
+      },
+      child: Scrollbar(
+        controller: logic.scrollController,
+        child: EasyRefresh(
+          onLoad: logic.loadMore,
+          footer: ClassicFooter(
+            iconDimension: 0,
+            dragText: "",
+            armedText: "",
+            processedText: "",
+            processingText: "",
+            showMessage: false,
+            infiniteOffset: null,
+            failedText: '加载失败',
+            triggerWhenReach: true,
+            noMoreText: "没有更早的消息",
+            textStyle: TextStyle(color: Color(0xFF666666)),
+            pullIconBuilder: (context, state, animation) =>
+                const SizedBox.shrink(),
           ),
+          child: _buildList(),
         ),
-
-        _buildInput(),
-      ],
+      ),
     );
 
     if (hasBackground) {
@@ -177,16 +174,18 @@ class _ChatPageState extends State<ChatPage> {
   /// 输入组件
   Widget _buildInput() {
     // 功能条（输入框、表情按钮、工具按钮等）
-    return ChatInput(
-      isSelectMode: isSelectMode,
-      onTapSend: logic.onTapSend,
-      onTapAlbum: logic.onTapAlbum,
-      onTapCamera: logic.onTapCamera,
-      onTapMenuFile: logic.onTapMenuFile,
-      onTapMenuTransfer: logic.onTapMenuTransfer,
-      onTapMenuRedPacket: logic.onTapMenuRedPacket,
-      onTapMenuCollect: logic.onTapMenuCollect,
-      chatInputController: _chatInputController,
+    return BlurWidget(
+      child: ChatInput(
+        isSelectMode: isSelectMode,
+        onTapSend: logic.onTapSend,
+        onTapAlbum: logic.onTapAlbum,
+        onTapCamera: logic.onTapCamera,
+        onTapMenuFile: logic.onTapMenuFile,
+        onTapMenuTransfer: logic.onTapMenuTransfer,
+        onTapMenuRedPacket: logic.onTapMenuRedPacket,
+        onTapMenuCollect: logic.onTapMenuCollect,
+        chatInputController: _chatInputController,
+      ),
     );
   }
 
@@ -194,54 +193,114 @@ class _ChatPageState extends State<ChatPage> {
   Widget _buildList() {
     return GetBuilder<ChatLogic>(
       builder: (controller) {
-        return ListView.separated(
+        return CustomScrollView(
           reverse: true,
           shrinkWrap: true,
-          itemCount: logic.messages.length,
-          padding: const EdgeInsets.all(20),
+          //padding: const EdgeInsets.all(20),
           controller: logic.scrollController,
           physics: !logic.hasScroll
               ? const NeverScrollableScrollPhysics()
               : null,
-          itemBuilder: (context, index) {
-            final Message message = logic.messages[index];
-            return ChatMessageItem(
-              index: index,
-              message: message,
-              isSelectMode: isSelectMode,
-              onTapMulti: () {
-                isSelectMode = !isSelectMode;
-                setState(() {});
-              },
-              onTapContent: () {
-                // switch (message.kind) {
-                //   case MsgKind.image:
-                //     ImageMessageUI imageMessage = message as ImageMessageUI;
-                //     Get.toNamed(
-                //       AppRoutes.previewImage,
-                //       arguments: {
-                //         "hero": message.heroKey,
-                //         "source": imageMessage.source,
-                //       },
-                //     );
-                //     break;
-                //   case MsgKind.video:
-                //     VideoMessageUI videoMessage = message as VideoMessageUI;
-                //     Get.toNamed(
-                //       AppRoutes.previewVideo,
-                //       arguments: {
-                //         "source": videoMessage.source,
-                //       },
-                //     );
-                //     break;
-                // }
-              },
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return 20.verticalSpace;
-          },
+          slivers: [
+            SliverSafeArea(
+              sliver: SliverPadding(
+                padding: const EdgeInsets.all(20),
+                sliver: SliverList.separated(
+                  itemCount: logic.messages.length,
+                  itemBuilder: (context, index) {
+                    final Message message = logic.messages[index];
+                    return ChatMessageItem(
+                      index: index,
+                      message: message,
+                      isSelectMode: isSelectMode,
+                      onTapMulti: () {
+                        isSelectMode = !isSelectMode;
+                        setState(() {});
+                      },
+                      onTapContent: () {
+                        switch (message.kind) {
+                          case MessageKind.image:
+                            ImageMessage imageMessage = message as ImageMessage;
+                            Get.to(
+                              () => PreviewImagePage(),
+                              transition: Transition.noTransition,
+                              arguments: {
+                                "hero": message.heroKey,
+                                "source": imageMessage.image,
+                              },
+                            );
+                            break;
+                          // case MsgKind.video:
+                          //   VideoMessageUI videoMessage = message as VideoMessageUI;
+                          //   Get.toNamed(
+                          //     AppRoutes.previewVideo,
+                          //     arguments: {
+                          //       "source": videoMessage.source,
+                          //     },
+                          //   );
+                          //   break;
+                          default:
+                            break;
+                        }
+                      },
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return 20.verticalSpace;
+                  },
+                ),
+              ),
+            ),
+          ],
         );
+        // return ListView.separated(
+        //   reverse: true,
+        //   shrinkWrap: true,
+        //   itemCount: logic.messages.length,
+        //   padding: const EdgeInsets.all(20),
+        //   controller: logic.scrollController,
+        //   physics: !logic.hasScroll
+        //       ? const NeverScrollableScrollPhysics()
+        //       : null,
+        //   itemBuilder: (context, index) {
+        //     final Message message = logic.messages[index];
+        //     return ChatMessageItem(
+        //       index: index,
+        //       message: message,
+        //       isSelectMode: isSelectMode,
+        //       onTapMulti: () {
+        //         isSelectMode = !isSelectMode;
+        //         setState(() {});
+        //       },
+        //       onTapContent: () {
+        //         // switch (message.kind) {
+        //         //   case MsgKind.image:
+        //         //     ImageMessageUI imageMessage = message as ImageMessageUI;
+        //         //     Get.toNamed(
+        //         //       AppRoutes.previewImage,
+        //         //       arguments: {
+        //         //         "hero": message.heroKey,
+        //         //         "source": imageMessage.source,
+        //         //       },
+        //         //     );
+        //         //     break;
+        //         //   case MsgKind.video:
+        //         //     VideoMessageUI videoMessage = message as VideoMessageUI;
+        //         //     Get.toNamed(
+        //         //       AppRoutes.previewVideo,
+        //         //       arguments: {
+        //         //         "source": videoMessage.source,
+        //         //       },
+        //         //     );
+        //         //     break;
+        //         // }
+        //       },
+        //     );
+        //   },
+        //   separatorBuilder: (BuildContext context, int index) {
+        //     return 20.verticalSpace;
+        //   },
+        // );
       },
     );
     // return Container(

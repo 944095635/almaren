@@ -45,5 +45,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>请点击“好”以允许访问。若不允许，你将无法给好友发送或者上传本地相册图片及视频内容。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>请点击“好”以允许访问。若不允许，你将无法使用视频通话、发送语音消息或录制视频等功能。</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>请点击“好”以允许访问。若不允许，你将无法给好友发送或者上传本地相册图片及视频内容。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请点击“好”以允许访问。若不允许，你将无法给好友发送或者上传本地相册图片及视频内容。</string>
 </dict>
 </plist>

@@ -1,6 +1,7 @@
 import 'package:almaren/models/chat.dart';
 import 'package:almaren/page/chats/chats_item.dart';
 import 'package:almaren/page/chats/chats_logic.dart';
+import 'package:almaren/page/search/search_page.dart';
 import 'package:almaren/widgets/blur_widget.dart';
 import 'package:almaren/widgets/body_title.dart';
 import 'package:easy_refresh/easy_refresh.dart';
@@ -27,11 +28,15 @@ class ChatsPage extends GetView<ChatsLogic> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => SearchPage());
+            },
             icon: SvgPicture.asset("assets/svgs/search.svg"),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => SearchPage());
+            },
             icon: SvgPicture.asset("assets/svgs/plus.svg"),
           ),
           5.horizontalSpace,

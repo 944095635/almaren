@@ -7,6 +7,9 @@ class Dimensions {
   /// 页面内边距 15
   static double pagePadding = 15;
 
+  /// 页面内边距 16 16 16 16
+  static EdgeInsets pageAllPadding = EdgeInsets.all(15);
+
   /// 圆角值
   static const BorderRadius borderRadiusSmall = BorderRadius.all(
     Radius.circular(8),

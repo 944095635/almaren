@@ -1,4 +1,5 @@
 import 'package:almaren/models/message.dart';
+import 'package:almaren/page/chat/render/message_image_render.dart';
 import 'package:almaren/page/chat/render/message_text_render.dart';
 import 'package:almaren/theme/colors.dart';
 import 'package:almaren/theme/dimensions.dart';
@@ -50,11 +51,11 @@ class ChatMessageItem extends StatelessWidget {
       case MessageKind.text:
         content = MessageTextRender(message as TextMessage);
         break;
-      // case MsgKind.image:
-      //   hasDecoration = false;
-      //   content = MessageImageRender(message as ImageMessageUI);
-      //   constraints = BoxConstraints(maxWidth: 160.w, maxHeight: 260.h);
-      //   break;
+      case MessageKind.image:
+        hasDecoration = false;
+        content = MessageImageRender(message as ImageMessage);
+        constraints = BoxConstraints(maxWidth: 160, maxHeight: 260);
+        break;
       // case MsgKind.video:
       //   hasDecoration = false;
       //   content = MessageVideoRender(message as VideoMessageUI);
