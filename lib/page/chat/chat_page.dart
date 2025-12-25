@@ -50,7 +50,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ChatLogic());
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -145,7 +144,7 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ),
     );
-    
+
     /// 设置背景
     // ignore: dead_code
     if (hasBackground) {

@@ -9,7 +9,7 @@ class SettingsLogic extends GetxController
   void onInit() {
     super.onInit();
     onInitAnimation(this);
-    change(GetStatus.success(null));
+    change(null, status: RxStatus.success());
   }
 
   /// 注销登录的账号

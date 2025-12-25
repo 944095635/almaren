@@ -126,7 +126,7 @@ class ChatsLogic extends GetxController
     // }
     //widget.unreadCountCallback(unreadCount);
     //await fillData(data);
-    change(GetStatus.success(chats));
+    change(null, status: RxStatus.success());
   }
 
   /// 下拉刷新

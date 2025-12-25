@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:almaren/models/message.dart';
 import 'package:almaren/theme/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -22,21 +24,35 @@ class MessageImageRender extends StatelessWidget {
     double dpiScale = MediaQuery.of(context).devicePixelRatio;
 
     /// 缓存宽度
-    int cacheWidth = (375 * dpiScale).toInt();
+    int cacheWidth = (200 * dpiScale).toInt();
+
+    Widget image;
+    if (message.image.startsWith("assets/")) {
+      image = Image.asset(
+        message.image,
+        cacheWidth: cacheWidth,
+        // memCacheWidth: cacheWidth,
+        // errorWidget: (context, url, error) {
+        //   return const Icon(Icons.error);
+        // },
+      );
+    } else {
+      image = Image.file(
+        File(message.image),
+        cacheWidth: cacheWidth,
+        // memCacheWidth: cacheWidth,
+        // errorWidget: (context, url, error) {
+        //   return const Icon(Icons.error);
+        // },
+      );
+    }
 
     /// 图片组件
-    Widget image = ClipRRect(
+    image = ClipRRect(
       borderRadius: Dimensions.borderRadiusSmall,
       child: Hero(
         tag: message.heroKey,
-        child: Image.asset(
-          message.image,
-          cacheWidth: cacheWidth,
-          // memCacheWidth: cacheWidth,
-          // errorWidget: (context, url, error) {
-          //   return const Icon(Icons.error);
-          // },
-        ),
+        child: image,
       ),
     );
 

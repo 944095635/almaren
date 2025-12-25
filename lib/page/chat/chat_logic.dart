@@ -143,14 +143,24 @@ class ChatLogic extends GetxController {
         name: "",
         self: true,
         image: file!.path,
-        w: asset.width.toDouble(),
-        h: asset.height.toDouble(),
+        w: asset.orientatedWidth.toDouble(),
+        h: asset.orientatedHeight.toDouble(),
       );
       _insertMessageSend(msg);
     }
   }
 
-  void onTapCamera() {}
+  /// 点击拍摄
+  void onTapCamera() async {
+    final AssetEntity? asset = await PickAssetsUtils.pickAssetsFromCamera();
+    if (asset != null) {
+      if (asset.type == AssetType.image) {
+        await _sendImage(asset);
+      } else if (asset.type == AssetType.video) {
+        // await _sendVideo(asset);
+      }
+    }
+  }
 
   void onTapMenuFile() {}
 

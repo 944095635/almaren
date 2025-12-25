@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:extended_image/extended_image.dart';
@@ -26,17 +28,21 @@ class PreviewImagePage extends StatelessWidget {
         //   mode: ExtendedImageMode.gesture,
         // );
       } else {
-        // 本地文件
-        // File file = File.fromUri(Uri.parse(url));
-        // widget = ExtendedImage.file(
-        //   file,
-        //   mode: ExtendedImageMode.gesture,
-        // );
-
-        widget = ExtendedImage.asset(
-          url,
-          mode: ExtendedImageMode.gesture,
-        );
+        if (url.startsWith("assets/")) {
+          widget = ExtendedImage.asset(
+            url,
+            mode: ExtendedImageMode.gesture,
+            cacheWidth: 375 * 3,
+          );
+        } else {
+          // 本地文件
+          File file = File.fromUri(Uri.parse(url));
+          widget = ExtendedImage.file(
+            file,
+            mode: ExtendedImageMode.gesture,
+            cacheWidth: 375 * 3,
+          );
+        }
       }
     } else {
       widget = const SizedBox();

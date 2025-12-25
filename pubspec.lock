@@ -341,10 +341,10 @@ packages:
     dependency: "direct main"
     description:
       name: get
-      sha256: b3294002946e99314c341bff0b4f3094e631a1f8cf37785e93aa7c2f04b0768e
+      sha256: "5ed34a7925b85336e15d472cc4cfe7d9ebf4ab8e8b9f688585bf6b50f4c3d79a"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0-release-candidate-9.3.2"
+    version: "4.7.3"
   html:
     dependency: transitive
     description:

@@ -73,6 +73,6 @@ class ContactsLogic extends GetxController
         ..portrait = "assets/images/avatar/2.jpg",
     );
 
-    change(GetStatus.success(contacts));
+    change(null, status: RxStatus.success());
   }
 }

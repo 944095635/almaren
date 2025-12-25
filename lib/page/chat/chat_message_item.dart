@@ -5,7 +5,6 @@ import 'package:almaren/theme/colors.dart';
 import 'package:almaren/theme/dimensions.dart';
 import 'package:almaren/widgets/avatar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 /// 聊天页面 - 消息子项
 class ChatMessageItem extends StatelessWidget {
