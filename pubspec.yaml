@@ -36,6 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^5.0.0-release-candidate-9.3.2
 
+  # 网络接口
+  http: ^1.6.0
+
+  # 系统接口
+  path_provider: ^2.1.5
+
   # 图像渲染
   flutter_svg: ^2.2.3
 
@@ -53,7 +59,7 @@ dependencies:
     #path: ../flutter_styled // 本地引用方式
     git: 
        url: https://github.com/DMSkin/flutter_styled.git
-
+  chat_bottom_container: ^0.4.0       # 输入框切换动画组件
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +88,7 @@ flutter:
   assets:
     - assets/svgs/
     - assets/svgs/frame/
+    - assets/svgs/chat/
     - assets/images/
     - assets/images/avatar/
 

@@ -9,12 +9,12 @@ class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   void _init() async {
-    await Future.delayed(const Duration(milliseconds: 1500));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString("init") != null) {
       Get.offAll(() => const FramePage(), transition: Transition.fadeIn);
     } else {
-      precacheImage(
+      // 超高清图像，图片比较大，预加载
+      await precacheImage(
         const AssetImage("assets/images/intro_bg.jpg"),
         Get.context!,
       );

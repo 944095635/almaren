@@ -1,5 +1,6 @@
 import 'package:almaren/mixin/appbar_mixin.dart';
 import 'package:almaren/models/chat.dart';
+import 'package:almaren/page/chat/chat_page.dart';
 import 'package:get/get.dart';
 
 class ChatsLogic extends GetxController
@@ -133,7 +134,8 @@ class ChatsLogic extends GetxController
     return _loadData();
   }
 
+  /// 跳转到聊天页面
   void onTapChat(Chat chat) {
-    //Get.to(() => ChatPage(), arguments: chat);
+    Get.to(() => ChatPage(), arguments: chat);
   }
 }
