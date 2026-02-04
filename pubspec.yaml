@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.4
+  sdk: ^3.10.8
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -41,7 +41,7 @@ dependencies:
 
   # 系统接口
   # path_provider: ^2.1.5
-  device_info_plus: ^12.2.0           # 设备信息(全平台支持)
+  device_info_plus: ^12.3.0           # 设备信息(全平台支持)
   permission_handler: ^12.0.1         # 权限处理(不支持PC - MacOS)
 
   # 图像渲染
@@ -62,7 +62,7 @@ dependencies:
   # 本地资源选择
   # file_picker: ^10.3.7                # 文件选择 - 支持文件保存(全平台支持)
   # image_picker: ^1.2.1                # 图片选择(提供给PC选择图片)
-  wechat_assets_picker: ^10.0.0       # 图片\视频选择器(不支持PC)
+  wechat_assets_picker: ^10.1.0       # 图片\视频选择器(不支持PC)
   wechat_camera_picker: ^4.4.0        # 图片\视频拍摄器(不支持PC)
   
   # 布局样式
